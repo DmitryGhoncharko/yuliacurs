@@ -8,16 +8,18 @@ namespace WindowsFormsApp1
     {
         private MySqlConnection connection;
         private string connectionString = "server=212.113.123.162;database=yulia;user=yulia;password=M59Mty|kei<k~R;";
-        private int currentQuestionId = 1;
+        private int currentQuestionId = 0; // Initialize to 0
         private int score = 0;
         private int userId;
+        private int totalQuestions;
+        private int questionNumber = 0; // Counter for question number
 
         public ClientForm(int userId)
         {
             InitializeComponent();
             this.userId = userId;
             InitializeDatabaseConnection();
-            LoadQuestion();
+            LoadTotalQuestions();
         }
 
         private void InitializeDatabaseConnection()
@@ -26,18 +28,55 @@ namespace WindowsFormsApp1
             connection.Open();
         }
 
+        private void LoadTotalQuestions()
+        {
+            string query = "SELECT COUNT(*) FROM Questions";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            totalQuestions = Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        private void btnStartTest_Click(object sender, EventArgs e)
+        {
+            ResetTest();
+            LoadQuestion();
+        }
+
         private void LoadQuestion()
         {
-            string query = "SELECT QuestionText FROM Questions WHERE QuestionID = @QuestionID";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@QuestionID", currentQuestionId);
+            string query;
+            MySqlCommand cmd;
 
-            MySqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
+            if (currentQuestionId == 0)
             {
-                lblQuestion.Text = reader["QuestionText"].ToString();
+                // Get the first question
+                query = "SELECT QuestionID, QuestionText FROM Questions ORDER BY QuestionID ASC LIMIT 1";
+                cmd = new MySqlCommand(query, connection);
             }
-            reader.Close();
+            else
+            {
+                // Get the next question
+                query = "SELECT QuestionID, QuestionText FROM Questions WHERE QuestionID > @CurrentQuestionID ORDER BY QuestionID ASC LIMIT 1";
+                cmd = new MySqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@CurrentQuestionID", currentQuestionId);
+            }
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    currentQuestionId = Convert.ToInt32(reader["QuestionID"]);
+                    lblQuestion.Text = reader["QuestionText"].ToString();
+                    questionNumber++;
+                    lblProgress.Text = $"Question {questionNumber} of {totalQuestions}";
+                }
+                else
+                {
+                    reader.Close();  // Ensure reader is closed
+                    SaveResult();
+                    MessageBox.Show("Test completed! Your score is " + score);
+                    ResetTest();
+                }
+            }
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -59,28 +98,24 @@ namespace WindowsFormsApp1
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@QuestionID", currentQuestionId);
 
-            int correctAnswer = (int)cmd.ExecuteScalar();
-            if (userAnswer == correctAnswer)
+            using (MySqlDataReader reader = cmd.ExecuteReader())
             {
-                score++;
-                MessageBox.Show("Correct!");
-            }
-            else
-            {
-                MessageBox.Show("Incorrect. The correct answer is " + correctAnswer);
+                if (reader.Read())
+                {
+                    int correctAnswer = Convert.ToInt32(reader["Answer"]);
+                    if (userAnswer == correctAnswer)
+                    {
+                        score++;
+                        MessageBox.Show("Correct!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrect. The correct answer is " + correctAnswer);
+                    }
+                }
             }
 
-            currentQuestionId++;
-            if (currentQuestionId > 4) // Assuming 4 questions
-            {
-                SaveResult();
-                MessageBox.Show("Game over! Your score is " + score);
-                ResetGame();
-            }
-            else
-            {
-                LoadQuestion();
-            }
+            LoadQuestion();
         }
 
         private void SaveResult()
@@ -92,11 +127,20 @@ namespace WindowsFormsApp1
             cmd.ExecuteNonQuery();
         }
 
-        private void ResetGame()
+        private void ResetTest()
         {
-            currentQuestionId = 1;
+            currentQuestionId = 0; // Reset to 0
+            questionNumber = 0; // Reset question number
             score = 0;
-            LoadQuestion();
+            lblQuestion.Text = string.Empty;
+            lblProgress.Text = string.Empty;
+            txtAnswer.Text = string.Empty;
+        }
+
+        private void btnViewResults_Click(object sender, EventArgs e)
+        {
+            ResultsForm resultsForm = new ResultsForm(userId);
+            resultsForm.Show();
         }
     }
 }
