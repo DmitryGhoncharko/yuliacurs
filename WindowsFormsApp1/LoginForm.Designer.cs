@@ -1,8 +1,6 @@
-﻿using System.ComponentModel;
-
-namespace WindowsFormsApp1
+﻿namespace WindowsFormsApp1
 {
-   partial class LoginForm
+    partial class LoginForm
     {
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.TextBox txtUserName;
@@ -29,35 +27,36 @@ namespace WindowsFormsApp1
             // 
             this.txtUserName.Location = new System.Drawing.Point(12, 12);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(260, 20);
+            this.txtUserName.Size = new System.Drawing.Size(360, 20);
             this.txtUserName.TabIndex = 0;
-            this.txtUserName.Text = "Username";
+            this.txtUserName.Text = "Имя пользователя";
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(12, 38);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(260, 20);
+            this.txtPassword.Size = new System.Drawing.Size(360, 20);
             this.txtPassword.TabIndex = 1;
-            this.txtPassword.Text = "Password";
+            this.txtPassword.Text = "Пароль";
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(197, 64);
+            this.btnLogin.Location = new System.Drawing.Point(297, 64);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 2;
-            this.btnLogin.Text = "Login";
+            this.btnLogin.Text = "Вход";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // LoginForm
             // 
-            this.ClientSize = new System.Drawing.Size(284, 101);
+            this.ClientSize = new System.Drawing.Size(384, 111);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUserName);
             this.Name = "LoginForm";
+            this.Text = "Форма входа";
             this.ResumeLayout(false);
             this.PerformLayout();
         }

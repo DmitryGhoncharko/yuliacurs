@@ -1,8 +1,6 @@
-﻿using System.ComponentModel;
-
-namespace WindowsFormsApp1
+﻿namespace WindowsFormsApp1
 {
-  partial class RegisterForm
+    partial class RegisterForm
     {
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.TextBox txtUserName;
@@ -31,44 +29,45 @@ namespace WindowsFormsApp1
             // 
             this.txtUserName.Location = new System.Drawing.Point(12, 12);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(260, 20);
+            this.txtUserName.Size = new System.Drawing.Size(360, 20);
             this.txtUserName.TabIndex = 0;
-            this.txtUserName.Text = "Username";
+            this.txtUserName.Text = "Имя пользователя";
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(12, 38);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(260, 20);
+            this.txtPassword.Size = new System.Drawing.Size(360, 20);
             this.txtPassword.TabIndex = 1;
-            this.txtPassword.Text = "Password";
+            this.txtPassword.Text = "Пароль";
             // 
             // txtConfirmPassword
             // 
             this.txtConfirmPassword.Location = new System.Drawing.Point(12, 64);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
-            this.txtConfirmPassword.Size = new System.Drawing.Size(260, 20);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(360, 20);
             this.txtConfirmPassword.TabIndex = 2;
-            this.txtConfirmPassword.Text = "Confirm Password";
+            this.txtConfirmPassword.Text = "Подтвердите пароль";
             // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(197, 90);
+            this.btnRegister.Location = new System.Drawing.Point(297, 90);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(75, 23);
             this.btnRegister.TabIndex = 3;
-            this.btnRegister.Text = "Register";
+            this.btnRegister.Text = "Регистрация";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // RegisterForm
             // 
-            this.ClientSize = new System.Drawing.Size(284, 121);
+            this.ClientSize = new System.Drawing.Size(384, 131);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.txtConfirmPassword);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUserName);
             this.Name = "RegisterForm";
+            this.Text = "Форма регистрации";
             this.ResumeLayout(false);
             this.PerformLayout();
         }

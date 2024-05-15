@@ -16,7 +16,7 @@ namespace WindowsFormsApp1
             InitializeComponent();
             this.userId = userId;
             InitializeDatabaseConnection();
-            LoadUserName(); // Load and display the user name
+            LoadUserName(); // Загрузка и отображение имени пользователя
             LoadResults();
         }
 
@@ -36,7 +36,7 @@ namespace WindowsFormsApp1
             {
                 if (reader.Read())
                 {
-                    lblUserName.Text = "Results for: " + reader["UserName"].ToString();
+                    lblUserName.Text = "Результаты для: " + reader["UserName"].ToString();
                 }
             }
         }

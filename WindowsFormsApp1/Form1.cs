@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
 
             // Добавление кнопок регистрации и входа
             Button btnRegister = new Button();
-            btnRegister.Text = "Register";
+            btnRegister.Text = "Регистрация";
             btnRegister.Click += (s, e) => {
                 RegisterForm registerForm = new RegisterForm();
                 registerForm.Show();
@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
             this.Controls.Add(btnRegister);
 
             Button btnLogin = new Button();
-            btnLogin.Text = "Login";
+            btnLogin.Text = "Войти";
             btnLogin.Click += (s, e) => {
                 LoginForm loginForm = new LoginForm();
                 loginForm.Show();

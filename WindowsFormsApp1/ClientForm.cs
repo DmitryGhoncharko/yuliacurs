@@ -67,13 +67,13 @@ namespace WindowsFormsApp1
                     currentQuestionId = Convert.ToInt32(reader["QuestionID"]);
                     lblQuestion.Text = reader["QuestionText"].ToString();
                     questionNumber++;
-                    lblProgress.Text = $"Question {questionNumber} of {totalQuestions}";
+                    lblProgress.Text = $"Вопрос {questionNumber} из {totalQuestions}";
                 }
                 else
                 {
                     reader.Close();  // Ensure reader is closed
                     SaveResult();
-                    MessageBox.Show("Test completed! Your score is " + score);
+                    MessageBox.Show("Тест завершен! Ваш результат: " + score);
                     ResetTest();
                 }
             }
@@ -88,7 +88,7 @@ namespace WindowsFormsApp1
             }
             else
             {
-                MessageBox.Show("Please enter a valid number.");
+                MessageBox.Show("Введите правильное число.");
             }
         }
 
@@ -106,11 +106,11 @@ namespace WindowsFormsApp1
                     if (userAnswer == correctAnswer)
                     {
                         score++;
-                        MessageBox.Show("Correct!");
+                        MessageBox.Show("Правильно!");
                     }
                     else
                     {
-                        MessageBox.Show("Incorrect. The correct answer is " + correctAnswer);
+                        MessageBox.Show("Неправильно. Правильный ответ: " + correctAnswer);
                     }
                 }
             }
@@ -120,11 +120,20 @@ namespace WindowsFormsApp1
 
         private void SaveResult()
         {
-            string query = "INSERT INTO UserResults (UserID, Score) VALUES (@UserID, @Score)";
+            string query = "INSERT INTO UserResults (UserID, UserName, Score) VALUES (@UserID, @UserName, @Score)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@UserID", userId);
+            cmd.Parameters.AddWithValue("@UserName", GetUserName());
             cmd.Parameters.AddWithValue("@Score", score);
             cmd.ExecuteNonQuery();
+        }
+
+        private string GetUserName()
+        {
+            string query = "SELECT UserName FROM Users WHERE UserID = @UserID";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@UserID", userId);
+            return cmd.ExecuteScalar().ToString();
         }
 
         private void ResetTest()

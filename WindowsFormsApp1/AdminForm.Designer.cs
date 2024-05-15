@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace WindowsFormsApp1
+﻿namespace WindowsFormsApp1
 {
     partial class AdminForm
     {
@@ -36,45 +34,45 @@ namespace WindowsFormsApp1
             // 
             this.txtQuestionText.Location = new System.Drawing.Point(12, 12);
             this.txtQuestionText.Name = "txtQuestionText";
-            this.txtQuestionText.Size = new System.Drawing.Size(260, 20);
+            this.txtQuestionText.Size = new System.Drawing.Size(460, 20);
             this.txtQuestionText.TabIndex = 0;
-            this.txtQuestionText.Text = "Question Text";
+            this.txtQuestionText.Text = "Текст вопроса";
             // 
             // txtAnswer
             // 
             this.txtAnswer.Location = new System.Drawing.Point(12, 38);
             this.txtAnswer.Name = "txtAnswer";
-            this.txtAnswer.Size = new System.Drawing.Size(260, 20);
+            this.txtAnswer.Size = new System.Drawing.Size(460, 20);
             this.txtAnswer.TabIndex = 1;
-            this.txtAnswer.Text = "Answer";
+            this.txtAnswer.Text = "Ответ";
             // 
             // btnAddQuestion
             // 
             this.btnAddQuestion.Location = new System.Drawing.Point(12, 64);
             this.btnAddQuestion.Name = "btnAddQuestion";
-            this.btnAddQuestion.Size = new System.Drawing.Size(75, 23);
+            this.btnAddQuestion.Size = new System.Drawing.Size(100, 23);
             this.btnAddQuestion.TabIndex = 2;
-            this.btnAddQuestion.Text = "Add";
+            this.btnAddQuestion.Text = "Добавить";
             this.btnAddQuestion.UseVisualStyleBackColor = true;
             this.btnAddQuestion.Click += new System.EventHandler(this.btnAddQuestion_Click);
             // 
             // btnUpdateQuestion
             // 
-            this.btnUpdateQuestion.Location = new System.Drawing.Point(104, 64);
+            this.btnUpdateQuestion.Location = new System.Drawing.Point(118, 64);
             this.btnUpdateQuestion.Name = "btnUpdateQuestion";
-            this.btnUpdateQuestion.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdateQuestion.Size = new System.Drawing.Size(100, 23);
             this.btnUpdateQuestion.TabIndex = 3;
-            this.btnUpdateQuestion.Text = "Update";
+            this.btnUpdateQuestion.Text = "Обновить";
             this.btnUpdateQuestion.UseVisualStyleBackColor = true;
             this.btnUpdateQuestion.Click += new System.EventHandler(this.btnUpdateQuestion_Click);
             // 
             // btnDeleteQuestion
             // 
-            this.btnDeleteQuestion.Location = new System.Drawing.Point(197, 64);
+            this.btnDeleteQuestion.Location = new System.Drawing.Point(224, 64);
             this.btnDeleteQuestion.Name = "btnDeleteQuestion";
-            this.btnDeleteQuestion.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteQuestion.Size = new System.Drawing.Size(100, 23);
             this.btnDeleteQuestion.TabIndex = 4;
-            this.btnDeleteQuestion.Text = "Delete";
+            this.btnDeleteQuestion.Text = "Удалить";
             this.btnDeleteQuestion.UseVisualStyleBackColor = true;
             this.btnDeleteQuestion.Click += new System.EventHandler(this.btnDeleteQuestion_Click);
             // 
@@ -83,13 +81,13 @@ namespace WindowsFormsApp1
             this.dataGridViewQuestions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewQuestions.Location = new System.Drawing.Point(12, 93);
             this.dataGridViewQuestions.Name = "dataGridViewQuestions";
-            this.dataGridViewQuestions.Size = new System.Drawing.Size(260, 156);
+            this.dataGridViewQuestions.Size = new System.Drawing.Size(460, 300);
             this.dataGridViewQuestions.TabIndex = 5;
             this.dataGridViewQuestions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewQuestions_CellClick);
             // 
             // AdminForm
             // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(484, 411);
             this.Controls.Add(this.dataGridViewQuestions);
             this.Controls.Add(this.btnDeleteQuestion);
             this.Controls.Add(this.btnUpdateQuestion);
@@ -97,7 +95,7 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.txtAnswer);
             this.Controls.Add(this.txtQuestionText);
             this.Name = "AdminForm";
-            this.Text = "Admin Panel";
+            this.Text = "Панель администратора";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuestions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
